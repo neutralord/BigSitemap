@@ -9,5 +9,5 @@ setup(
     url='http://pypi.python.org/pypi/BigSitemap/',
     license='LICENSE.txt',
     description='A sitemap generator suitable for applications with greater than 50,000 URLs.',
-    long_description=open('README.txt').read()
+    long_description=open('README.rst').read()
 )

@@ -19,17 +19,17 @@ From [BigSitemap](https://rubygems.org/gems/big_sitemap):
         'base_path': '/var/www/cdn/sitemaps'
     }
 
-    sections = ['/','/boats','/cars','/gadgets','/travel']
-    places   = ['/parents-house.html','/grocery-store.html']
+    sections = ['/', '/boats', '/cars', '/gadgets', '/travel']
+    places   = ['/parents-house.html', '/grocery-store.html']
 
-    generator = bigsitemap.Generator(options)
+    generator = bigsitemap.Generator(**options)
     for section in sections:
-        generator.add_url('sections',section,{'last_modified':datetime.now(),'change_frequency':'daily','priority':0.6})
+        generator.add_url('sections', section, last_modified=datetime.now(), change_frequency='daily', priority=0.6)
     for place in places:
-        generator.add_url('places',place,{'last_modified':datetime.now(),'change_frequency':'daily','priority':0.6})
+        generator.add_url('places', place, last_modified=datetime.now(), change_frequency='daily', priority=0.6)
 
     generator.finish() 
-    generator.files() #Returns ['sitemap.xml.gz','sections.gz','places.gz']
+    generator.files() #Returns ['sitemap.xml.gz', 'sections.xml.gz', 'places.xml.gz']
 
 
 
@@ -48,11 +48,11 @@ If your sitemaps grow beyond 50,000 URLs, the sitemap files will be partitioned 
 
 You can control [changefreq](http://www.sitemaps.org/protocol.html#changefreqdef), [priority](http://www.sitemaps.org/protocol.html#prioritydef) and [lastmod](http://www.sitemaps.org/protocol.html#lastmoddef) values for each record individually by passing them as optional arguments when adding URLs:
 
-    generator.add_url('sections',section,{
-        'last_modified':datetime.now(),
-        'change_frequency':'daily',
-        'priority':0.6
-    })
+    generator.add_url('sections', section,
+        last_modified=datetime.now(),
+        change_frequency='daily',
+        priority=0.6
+    )
 
 ##TODO
     - Writer class for dependency injection

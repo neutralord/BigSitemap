@@ -1,5 +1,5 @@
 BigSitemap
-===============
+==========
 
 This module was based on the big_sitemap_ ruby gem.
 
@@ -8,7 +8,7 @@ From the gem description:
     BigSitemap is a Sitemapgenerator suitable for applications with greater than 50,000 URLs. It splits large Sitemaps into multiple files, gzips the files to minimize bandwidth usage...
 
 Usage
----------
+-----
 
 Example::
 
@@ -24,19 +24,19 @@ Example::
     }
 
 
-    sections = ['/','/boats','/cars','/gadgets','/travel']
-    places   = ['/parents-house.html','/grocery-store.html']
+    sections = ['/', '/boats', '/cars', '/gadgets', '/travel']
+    places   = ['/parents-house.html', '/grocery-store.html']
 
-    generator = bigsitemap.Generator(options)
+    generator = bigsitemap.Generator(**options)
 
     for section in sections:
-        generator.add_url('sections',section,{'last_modified':datetime.now(),'change_frequency':'daily','priority':0.6})
+        generator.add_url('sections', section, last_modified=datetime.now(), change_frequency='daily', priority=0.6)
 
     for place in places:
-        generator.add_url('places',place,{'last_modified':datetime.now(),'change_frequency':'daily','priority':0.6})
+        generator.add_url('places', place, last_modified=datetime.now(), change_frequency='daily', priority=0.6)
 
     generator.finish() 
-    generator.files() #Returns ['sitemap.xml.gz','sections.gz','places.gz']
+    generator.files() #Returns ['sitemap.xml.gz', 'sections.xml.gz', 'places.xml.gz']
 
 
 If your sitemaps grow beyond 50,000 URLs, the sitemap files will be partitioned into multiple files (places_1.xml.gz, places_2.xml.gz, ...).
@@ -55,15 +55,14 @@ Change Frequency, Priority and Last Modified
 --------------------------------------------
 You can control `changefreq <http://www.sitemaps.org/protocol.html#changefreqdef>`_, `priority <http://www.sitemaps.org/protocol.html#prioritydef>`_ and `lastmod <http://www.sitemaps.org/protocol.html#lastmoddef>`_ values for each record individually by passing them as optional arguments when adding URLs::
 
-    generator.add_url('sections',section,{
-        'last_modified':datetime.now(),
-        'change_frequency':'daily',
-        'priority':0.6
-
-    })
+    generator.add_url('sections', section,
+        last_modified=datetime.now(),
+        change_frequency='daily',
+        priority=0.6
+    )
 
 TODO
------
+----
     - Writer class for dependency injection
     - Automated tests
 
